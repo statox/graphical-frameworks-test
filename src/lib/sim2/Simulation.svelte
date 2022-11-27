@@ -10,11 +10,12 @@
     let avgFPS: string;
     const sketch: Sketch = (p5) => {
         p5.setup = () => {
-            canvas = p5.createCanvas(p5.windowWidth * 0.9, (9 / 16) * p5.windowWidth * 0.9);
+            canvas = p5.createCanvas(p5.windowWidth * 0.9, (9 / 16) * p5.windowWidth * 0.9, p5.WEBGL);
             flock = createFlock($flockSize, { screenWidth: p5.width, screenHeight: p5.height });
         };
         p5.draw = () => {
             p5.background(0);
+            p5.translate(-p5.width / 2, -p5.height / 2);
             updateFlock(flock, { w: p5.width, h: p5.height });
             drawFlock(p5, flock);
 

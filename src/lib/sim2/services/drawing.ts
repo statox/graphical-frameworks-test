@@ -6,7 +6,7 @@ import { boidsSize } from '../stores/simulation';
 
 const drawBoid = (p: p5, boid: Boid) => {
     const normalizedId = p.map(boid.meta.noise || 0, -5, 5, 255, 0);
-    p.fill(normalizedId, 100, 100);
+    p.fill(100, normalizedId, 100);
 
     const angle = Math.atan2(boid.speed.at(1), boid.speed.at(0)) - Math.PI / 2;
 
