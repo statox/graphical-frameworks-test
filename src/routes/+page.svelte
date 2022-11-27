@@ -1,7 +1,5 @@
-<script>
-    import Simulation from '$lib/Simulation.svelte';
-</script>
-
 <h1>Boids 2</h1>
 
-<Simulation />
+<ul>
+    <li><a href="/sim1">Simulation 1 - P5js</a></li>
+</ul>

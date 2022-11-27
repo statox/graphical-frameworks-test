@@ -1,8 +1,8 @@
 import type { p5 } from 'p5-svelte';
 import type { Boid } from './boids.type';
 import type { Flock } from './flock.type';
-import { get } from 'svelte/store'
-import { boidsSize } from '$lib/stores/simulation';
+import { get } from 'svelte/store';
+import { boidsSize } from '../stores/simulation';
 
 const drawBoid = (p: p5, boid: Boid) => {
     const normalizedId = p.map(boid.meta.noise || 0, -5, 5, 255, 0);
