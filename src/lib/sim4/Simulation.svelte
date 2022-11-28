@@ -1,6 +1,6 @@
 <script lang="ts">
     import Two from 'two.js';
-    import { onMount } from 'svelte';
+    import { onDestroy, onMount } from 'svelte';
     import type { Flock } from './services/flock.type';
     import { createFlock, updateFlock, updateFlockSize } from './services/flock';
     import { boidsSize, flockSize } from './stores/simulation';
@@ -10,6 +10,16 @@
     let elem: HTMLElement;
     let flock: Flock;
     let avgFPS: string;
+    let two: Two;
+
+    function getWindowWidth() {
+        return (
+            window.innerWidth ||
+            (document.documentElement && document.documentElement.clientWidth) ||
+            (document.body && document.body.clientWidth) ||
+            0
+        );
+    }
 
     onMount(() => {
         if (!document.getElementById('canvas')) {
@@ -17,9 +27,11 @@
         }
         elem = document.getElementById('canvas') as HTMLElement;
         var params = {
-            fullscreen: false
+            fullscreen: false,
+            width: getWindowWidth() * 0.9,
+            height: (9 / 16) * getWindowWidth() * 0.9
         };
-        const two = new Two(params).appendTo(elem);
+        two = new Two(params).appendTo(elem);
 
         two.renderer.domElement.style.background = 'rgb(0, 0, 0)';
 
@@ -40,6 +52,8 @@
             updateFlockSize(flock, $flockSize, { screenWidth: elem.offsetWidth, screenHeight: elem.offsetHeight });
         }
     }
+
+    onDestroy(() => two?.clear());
 </script>
 
 <div id="canvas" />
