@@ -13,7 +13,7 @@ const drawBoid = (two: Two, boid: Boid) => {
 
     boid.meta.sprite.radius = boid_size;
     const normalizedNoise = map(boid.meta.noise || 0, -5, 5, 255, 0);
-    boid.meta.sprite.fill = `rgb(${normalizedNoise}, 100, 100)`;
+    boid.meta.sprite.fill = `rgb(${normalizedNoise}, 50, 150)`;
     boid.meta.sprite.position.set(boid.pos.at(0), boid.pos.at(1));
 };
 
